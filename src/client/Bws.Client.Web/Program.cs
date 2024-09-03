@@ -1,3 +1,4 @@
+using Bws.Client.Web.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -11,7 +12,9 @@ namespace Bws.Client.Web
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            var appSettings = await builder.GetAppConfiguration();
+            
+            builder.SetupHttpClient(appSettings?.ApiSettings);
 
             await builder.Build().RunAsync();
         }
