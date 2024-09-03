@@ -1,0 +1,6 @@
+@Bws.Server.Api_HostAddress = http://localhost:5125
+
+GET {{Bws.Server.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
